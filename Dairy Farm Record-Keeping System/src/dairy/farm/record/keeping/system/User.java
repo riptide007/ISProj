@@ -2,10 +2,9 @@ package dairy.farm.record.keeping.system;
 
 
 
-import dairy.farm.record.keeping.system.DBConnect;
-import dairy.farm.record.keeping.system.HasherSha1;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +18,7 @@ public class User  {
     String uname;
     String password;
     String CPassword;
-    boolean isCorrect;
+    String isCorrect;
 
     DBConnect db = new DBConnect();//db instance
     Connection myCon = db.myConnect(); //db connection instance
@@ -53,13 +52,15 @@ public class User  {
         this.CPassword = CPassword;
     }
 
-    public boolean isIsCorrect() {
+    public String isIsCorrect() {
         return isCorrect;
     }
 
-    public void setIsCorrect(boolean isCorrect) {
+    public void setIsCorrect(String isCorrect) {
         this.isCorrect = isCorrect;
     }
+
+   
     
     public void clear(){
         setCPassword(null);
@@ -68,20 +69,19 @@ public class User  {
     }
     
     public void login() throws SQLException{
-         
+         PreparedStatement statement=null;
 
-    Statement statement = myCon.createStatement();
+          
     
     String SQL = "SELECT uname, password FROM user WHERE uname = '" + getUname()
             + "' AND password = '" + jk.encryptPassword(getPassword()) + "';";
-
-    ResultSet resultSet = statement.executeQuery(SQL);
+statement = (PreparedStatement) myCon.prepareStatement(SQL);
+    ResultSet resultSet = statement.executeQuery();
     while (resultSet.next()) {
         if (getUname().equals(resultSet.getString("uname")) && jk.encryptPassword(getPassword()).equals(resultSet.getString("password"))) {
-         setIsCorrect(true);
-         
+            setIsCorrect("true");
         } else{
-            setIsCorrect(false);
+          setIsCorrect("false");
         }
     }
 

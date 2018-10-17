@@ -63,7 +63,8 @@ public class Records {
                             + "(fname,lname,uname,gender,phone,address,"
                             + "email,password,age) "
                             + "VALUES ('" + getRecordid() + "','"
-                            + getRecordtype()+ "') ";
+                            + getRecordtype()+ "','"   
+                            + getTimedate()+ "') ";
                     s.execute(sql);
                     clear();
      }

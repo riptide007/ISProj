@@ -81,11 +81,13 @@ public class welcome extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         login log= new login();
         log.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         signup sp = new signup();
         sp.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_signupActionPerformed
 
     /**

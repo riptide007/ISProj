@@ -6,8 +6,6 @@
 package dairy.farm.record.keeping.system;
 
 import java.sql.Connection;
-import dairy.farm.record.keeping.system.DBConnect;
-import dairy.farm.record.keeping.system.HasherSha1;
 import java.sql.SQLException;
 import java.sql.Statement;
 

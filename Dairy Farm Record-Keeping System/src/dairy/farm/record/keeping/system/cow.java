@@ -67,11 +67,13 @@ public class cow {
         this.sex = sex;
     }
      public void clear(){
-        
+         setCowid(null);
+         setDob(null);
+        setDateofpurchase(null);
           setLocaction(null);
          setSex(null);
     }
-     public void saveUser() throws SQLException{
+     public void saveCow() throws SQLException{
           Statement s = null;
          //creates an instance of the DBConnect class
          
@@ -80,12 +82,12 @@ public class cow {
          s = myCon.createStatement();
          
                     String sql = "INSERT INTO user "
-                            + "(uname,password) "
+                            + "(cowid,dob,dop,sex,birthplace) "
                             + "VALUES ('" + getCowid() + "','"
                             +  getDob() + "','"   
                             + getDateofpurchase() + "','"   
-                            + getLocaction() + "','"      
-                            + getSex()+ "') ";
+                            + getSex() + "','"      
+                            + getLocaction()+ "') ";
                     s.execute(sql);
                     clear();
      }
