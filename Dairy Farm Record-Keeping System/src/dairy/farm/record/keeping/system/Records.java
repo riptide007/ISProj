@@ -18,9 +18,9 @@ public class Records {
     String timedate;
     String recordtype;
 
-        DBConnect db = new DBConnect();//db instance
-    Connection myCon = db.myConnect(); //db connection instance
-    HasherSha1 jk = new HasherSha1(); //hashing class instance
+    DBConnect db = new DBConnect();
+    Connection myCon = db.myConnect(); 
+    HasherSha1 jk = new HasherSha1(); 
     public Records() {
     }
 

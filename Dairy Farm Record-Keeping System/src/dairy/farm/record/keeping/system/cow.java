@@ -15,14 +15,15 @@ import java.sql.Statement;
  */
 public class cow {
     String cowid;
+    String cowtype;
     String dob;
     String dateofpurchase;
     String locaction;
     String sex;
 
-    DBConnect db = new DBConnect();//db instance
-    Connection myCon = db.myConnect(); //db connection instance
-    HasherSha1 jk = new HasherSha1(); //hashing class instance
+    DBConnect db = new DBConnect();
+    Connection myCon = db.myConnect(); 
+    HasherSha1 jk = new HasherSha1(); 
     
     public cow() {
     }
@@ -33,6 +34,14 @@ public class cow {
 
     public void setCowid(String cowid) {
         this.cowid = cowid;
+    }
+
+    public String getCowtype() {
+        return cowtype;
+    }
+
+    public void setCowtype(String cowtype) {
+        this.cowtype = cowtype;
     }
 
     public String getDob() {
@@ -68,6 +77,7 @@ public class cow {
     }
      public void clear(){
          setCowid(null);
+         setCowtype(null);
          setDob(null);
         setDateofpurchase(null);
           setLocaction(null);
@@ -82,9 +92,10 @@ public class cow {
          s = myCon.createStatement();
          
                     String sql = "INSERT INTO user "
-                            + "(cowid,dob,dop,sex,birthplace) "
+                            + "(cowid,cowtype,dob,dop,sex,birthplace) "
                             + "VALUES ('" + getCowid() + "','"
-                            +  getDob() + "','"   
+                            +  getCowtype() + "','"  
+                            +  getDob() + "','"  
                             + getDateofpurchase() + "','"   
                             + getSex() + "','"      
                             + getLocaction()+ "') ";

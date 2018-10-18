@@ -18,10 +18,10 @@ public class milk {
     double  firstmilk;
     double secondmilk;
     double thirdmilk;
-    double total;
-  DBConnect db = new DBConnect();//db instance
-    Connection myCon = db.myConnect(); //db connection instance
-    HasherSha1 jk = new HasherSha1(); //hashing class instance
+    
+  DBConnect db = new DBConnect();
+    Connection myCon = db.myConnect(); 
+    HasherSha1 jk = new HasherSha1(); 
     public milk() {
     }
 
@@ -57,20 +57,14 @@ public class milk {
         this.thirdmilk = thirdmilk;
     }
 
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
+  
     
       public void clear(){
          setCowid(null);
          setFirstmilk(0);
          setSecondmilk(0);
          setThirdmilk(0);
-          setTotal(0);
+         
          
          
          
@@ -85,12 +79,11 @@ public class milk {
          s = myCon.createStatement();
          
                     String sql = "INSERT INTO user "
-                            + "(cowid,firstmilking,secondmilking,thirdmilking,total) "
+                            + "(cowid,firstmilking,secondmilking,thirdmilking) "
                             + "VALUES ('" + getCowid() + "','"
                             + getFirstmilk() + "','"   
-                            + getSecondmilk() + "','"   
-                            + getThirdmilk() + "','"      
-                            +getTotal()+ "') ";
+                            + getSecondmilk() + "','"       
+                            +getThirdmilk() + "') ";
                     s.execute(sql);
                     clear();
      }

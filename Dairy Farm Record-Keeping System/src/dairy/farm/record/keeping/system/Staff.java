@@ -18,19 +18,28 @@ public class Staff {
    
         String fname;
     String lname;
+    String nid;
        String gender;
     String phone;
     String address;
     String email;
-    int age;
+    String dob;
    String speciality;
   double salary;
     
-         DBConnect db = new DBConnect();//db instance
-    Connection myCon = db.myConnect(); //db connection instance
-    HasherSha1 jk = new HasherSha1(); //hashing class instance
+ DBConnect db = new DBConnect();
+    Connection myCon = db.myConnect(); 
+    HasherSha1 jk = new HasherSha1(); 
     
      public Staff() {
+    }
+
+    public String getNid() {
+        return nid;
+    }
+
+    public void setNid(String nid) {
+        this.nid = nid;
     }
 
 
@@ -83,29 +92,16 @@ public class Staff {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
+    public String getDob() {
+        return dob;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
+  
 
-    public DBConnect getDb() {
-        return db;
-    }
 
-    public void setDb(DBConnect db) {
-        this.db = db;
-    }
-
-    public String getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
 
     public double getSalary() {
         return salary;
@@ -115,14 +111,15 @@ public class Staff {
         this.salary = salary;
     }
       public void clear(){
+           setNid(null);
         setAddress(null);
-        setAge(0);
+       setDob(null);
         setEmail(null);
         setFname(null);
         setGender(null);
         setLname(null);
         setPhone(null);
-         setSpeciality(null);
+       
           setSalary(0);
     }
   public void saveStaff() throws SQLException{
@@ -134,17 +131,18 @@ public class Staff {
          s = myCon.createStatement();
          
                     String sql = "INSERT INTO staff "
-                            + "(fname,lname,gender,phone,address,"
-                            + "email,age,salary,speciality) "
-                            + "VALUES ('" + getFname() + "','"
+                            + "(nid,fname,lname,gender,phone,address,"
+                            + "email,dob,salary) "
+                            + "VALUES ('" +  getNid()+ "','"
+                            +getFname() + "','"  
                             + getLname() + "','"                       
                             + getGender()+ "'" + ",'"
                             + getPhone() + "','"
                             + getAddress()+ "','"
                             + getEmail()+ "','"
-                            + getAge()+"," 
-                            + getSalary()+"," 
-                            +getSpeciality()+ "') ";
+                            +getDob()+"," 
+                           // ++"," 
+                            + getSalary()+ "') ";
                     s.execute(sql);
                     clear();
      }} 
