@@ -24,7 +24,6 @@ public class Staff {
     String address;
     String email;
     String dob;
-   String speciality;
   double salary;
     
  DBConnect db = new DBConnect();
