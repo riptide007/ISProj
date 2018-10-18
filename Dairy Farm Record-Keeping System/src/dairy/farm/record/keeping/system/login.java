@@ -162,6 +162,8 @@ User user = new User();
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
        setVisible(false);
+       welcome n = new welcome();
+       n.setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
@@ -174,15 +176,16 @@ User user = new User();
        try {
             user.login();
              if(user.isCorrect=="true"){
-            home h = new home();
-            h.setVisible(true);
-        }else{
-            logmessage.setVisible(true);
-        }
+                         home h = new home();
+                         h.setVisible(true);
+                         setVisible(false);
+                  }else{
+                        logmessage.setVisible(true);
+              }
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        setVisible(false);
+        
     }//GEN-LAST:event_loginActionPerformed
 
     private void passwrdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwrdActionPerformed

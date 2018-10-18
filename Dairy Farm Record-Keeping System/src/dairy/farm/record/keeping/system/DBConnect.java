@@ -22,7 +22,7 @@ public class DBConnect {
 
                    connect =DriverManager.getConnection(  
 "jdbc:mysql://localhost:3306/recorder?zeroDateTimeBehavior=convertToNull","isproject","breaker007");  
-    System.out.println("connected");
+  //  System.out.println("connected");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Cannot connect to Recorder DB "+e.getMessage());
         }

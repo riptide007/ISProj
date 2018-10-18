@@ -128,6 +128,7 @@ public class signup extends javax.swing.JFrame {
         try {
             user.saveUser();
             saved.setVisible(true);
+            setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -91,7 +91,7 @@ public class cow {
          System.out.println(myCon);
          s = myCon.createStatement();
          
-                    String sql = "INSERT INTO user "
+                    String sql = "INSERT INTO cow "
                             + "(cowid,cowtype,dob,dop,sex,birthplace) "
                             + "VALUES ('" + getCowid() + "','"
                             +  getCowtype() + "','"  
