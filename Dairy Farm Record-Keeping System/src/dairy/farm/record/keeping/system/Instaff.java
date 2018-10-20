@@ -1,5 +1,9 @@
 package dairy.farm.record.keeping.system;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -51,6 +55,7 @@ Staff st = new Staff();
         salary = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        dob = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,10 +159,11 @@ Staff st = new Staff();
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lname, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nid, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                            .addComponent(fname, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                            .addComponent(lname, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                            .addComponent(dob))))
                 .addGap(180, 180, 180))
         );
         layout.setVerticalGroup(
@@ -179,8 +185,10 @@ Staff st = new Staff();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -228,13 +236,17 @@ Staff st = new Staff();
     }//GEN-LAST:event_femActionPerformed
 
     private void savestaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savestaffActionPerformed
-        cow.setCowid(fname.getText());
-        cow.setCowtype(lname.getText());
-        cow.setDob(nid.getText());
-        cow.setDateofpurchase(address.getText());
-        cow.setLocaction(phone.getText());
+        st.setFname(fname.getText());
+        st.setLname(lname.getText());
+        st.setNid(nid.getText());
+        st.setDob(dob.getText());
+        st.setPhone(phone.getText());
+        st.setAddress(address.getText());
+        st.setEmail(email.getText());
+        st.setSalary(Double.parseDouble(salary.getText()));
+        
         try {
-            cow.saveCow();
+            st.saveStaff();
         } catch (SQLException ex) {
             Logger.getLogger(incow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -251,6 +263,7 @@ Staff st = new Staff();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private javax.swing.JButton back;
+    private javax.swing.JTextField dob;
     private javax.swing.JTextField email;
     private javax.swing.JRadioButton fem;
     private javax.swing.JTextField fname;

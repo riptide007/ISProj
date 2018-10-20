@@ -224,11 +224,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="STAFF"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="instaffActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="inmed">
           <Properties>
             <Property name="text" type="java.lang.String" value="MEDICAL"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inmedActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="inmilk">
           <Properties>

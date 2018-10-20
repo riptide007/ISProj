@@ -18,7 +18,7 @@ public class medical {
     String history;
     String symptoms;
     String diagnosis;
-    String treament;
+    String treatment;
     String result;
     String date;
 
@@ -60,12 +60,12 @@ public class medical {
         this.diagnosis = diagnosis;
     }
 
-    public String getTreament() {
-        return treament;
+    public String getTreatment() {
+        return treatment;
     }
 
-    public void setTreament(String treament) {
-        this.treament = treament;
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
     }
 
     public String getResult() {
@@ -89,7 +89,7 @@ public class medical {
         setHistory(null);
           setSymptoms(null) ;
          setDiagnosis(null);
-         setTreament(null);
+         setTreatment(null);
          setResult(null) ;
           setDate(null);
          
@@ -112,7 +112,7 @@ public class medical {
                             +getHistory() + "','"   
                             + getSymptoms() + "','"
                             + getDiagnosis() + "','"
-                            +getTreament() + "','"
+                            +getTreatment() + "','"
                             + getResult()  + "','"
                             +getDate() + "') ";
                     s.execute(sql);

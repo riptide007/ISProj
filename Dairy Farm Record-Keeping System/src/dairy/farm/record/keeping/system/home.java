@@ -91,8 +91,18 @@ public class home extends javax.swing.JFrame {
         });
 
         instaff.setText("STAFF");
+        instaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instaffActionPerformed(evt);
+            }
+        });
 
         inmed.setText("MEDICAL");
+        inmed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inmedActionPerformed(evt);
+            }
+        });
 
         inmilk.setText("PRODUCTION");
 
@@ -249,6 +259,18 @@ public class home extends javax.swing.JFrame {
        ic.setVisible(true);
        setVisible(false);
     }//GEN-LAST:event_incowActionPerformed
+
+    private void inmedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmedActionPerformed
+       inmedical im = new inmedical();
+              im.setVisible(true);
+       setVisible(false);
+    }//GEN-LAST:event_inmedActionPerformed
+
+    private void instaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instaffActionPerformed
+       Instaff is = new Instaff();
+              is.setVisible(true);
+       setVisible(false);
+    }//GEN-LAST:event_instaffActionPerformed
 
     /**
      * @param args the command line arguments
