@@ -37,12 +37,83 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <EmptySpace min="0" pref="515" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="outcow" alignment="0" max="32767" attributes="0"/>
+                      <Component id="outstaff" alignment="0" pref="95" max="32767" attributes="0"/>
+                      <Component id="outitem" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="outmed" alignment="0" max="32767" attributes="0"/>
+                          <Component id="outmilk" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jButton2" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <EmptySpace min="0" pref="424" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="outcow" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="outmilk" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="outstaff" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="outmed" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="outitem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="outstaff">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="STAFF"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="outitem">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ITEMS"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="outmed">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="MEDICAL"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CALVING"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="outcow">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="COW"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="outmilk">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PRODUCTION"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>
