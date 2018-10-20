@@ -14,12 +14,12 @@ import java.sql.Statement;
  * @author Jason M.
  */
 public class calving {
-    String calfid;
+    
     String cowid;
     String calvingdate;
     String insemmethod;
     String sex;
-    double birthweight;
+    int birthweight;
 
     public calving() {
     }
@@ -27,13 +27,7 @@ public class calving {
     Connection myCon = db.myConnect(); 
     HasherSha1 jk = new HasherSha1(); 
     
-    public String getCalfid() {
-        return calfid;
-    }
-
-    public void setCalfid(String calfid) {
-        this.calfid = calfid;
-    }
+  
 
     public String getCowid() {
         return cowid;
@@ -71,11 +65,11 @@ public class calving {
         return birthweight;
     }
 
-    public void setBirthweight(double birthweight) {
+    public void setBirthweight(int birthweight) {
         this.birthweight = birthweight;
     }
     public void clear(){
-        setCalfid(null);
+   
          setCowid(null);
          
           setCalvingdate(null);
@@ -83,7 +77,7 @@ public class calving {
          setSex(null);
          setBirthweight(0);
     }
-    public void saveCow() throws SQLException{
+    public void saveCalf() throws SQLException{
           Statement s = null;
          //creates an instance of the DBConnect class
          
@@ -91,10 +85,9 @@ public class calving {
          System.out.println(myCon);
          s = myCon.createStatement();
          
-                    String sql = "INSERT INTO user "
-                            + "(cowid,dob,dop,sex,birthplace) "
-                            + "VALUES ('" +getCalfid() + "','"
-                            +  getCowid() + "','"   
+                    String sql = "INSERT INTO calving "
+                            + "(cowid,calvingdate,insemmethod,sex,birthweight) "
+                            + "VALUES ('" + getCowid() + "','" 
                             +getCalvingdate() + "','"   
                             + getInsemmethod() + "','"   
                             + getSex() + "','"   

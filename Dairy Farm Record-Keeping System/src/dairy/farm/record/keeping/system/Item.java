@@ -17,13 +17,13 @@ import java.sql.Statement;
  */
 
 public class Item {
-      
+      String itemid;
     private String itemname;
-    private double quantity;
+    private int quantity;
     private String purchasedate;
     private String unit;
     private String itemtype;
-    private double cost;
+    private int cost;
     
     DBConnect db = new DBConnect();
     Connection myCon = db.myConnect(); 
@@ -31,7 +31,14 @@ public class Item {
     public Item() {
     }
 
-    
+    public String getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(String itemid) {
+        this.itemid = itemid;
+    }
+       
 
     public String getItemname() {
         return itemname;
@@ -46,7 +53,7 @@ public class Item {
     }
 
     public void setQuantity(double quantity) {
-        this.quantity = quantity;
+        this.quantity = (int) quantity;
     }
 
     public String getPurchasedate() {
@@ -77,10 +84,11 @@ public class Item {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
       public void clear(){
+          setItemid(null);
          setItemname(null);
           setQuantity(0);
          setPurchasedate(null);
@@ -97,9 +105,10 @@ public class Item {
          s = myCon.createStatement();
          
                     String sql = "INSERT INTO item "
-                            + "(itemname,itemtype,quantity,unit,cost,"
+                            + "(itemid,itemname,itemtype,quantity,price,unit,"
                             + "purchasedate) "
-                            + "VALUES ('" +  getItemname() + "','"
+                            + "VALUES ('" + getItemid() + "','"
+                             + getItemname() + "','" 
                             + getItemtype() + "','"                       
                             +getQuantity()+ "'" + ",'"
                             + getUnit() + "','"

@@ -24,7 +24,7 @@ public class Staff {
     String address;
     String email;
     String dob;
-  double salary;
+  int salary;
     
  DBConnect db = new DBConnect();
     Connection myCon = db.myConnect(); 
@@ -98,15 +98,12 @@ public class Staff {
     public void setDob(String dob) {
         this.dob = dob;
     }
-  
-
-
 
     public double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
       public void clear(){
@@ -118,7 +115,6 @@ public class Staff {
         setGender(null);
         setLname(null);
         setPhone(null);
-       
           setSalary(0);
     }
   public void saveStaff() throws SQLException{
@@ -140,7 +136,6 @@ public class Staff {
                             + getAddress()+ "','"
                             + getEmail()+ "','"
                             +getDob()+"," 
-                           // ++"," 
                             + getSalary()+ "') ";
                     s.execute(sql);
                     clear();

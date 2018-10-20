@@ -164,6 +164,7 @@ User user = new User();
        setVisible(false);
        welcome n = new welcome();
        n.setVisible(true);
+       user.clear();
     }//GEN-LAST:event_cancelActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed

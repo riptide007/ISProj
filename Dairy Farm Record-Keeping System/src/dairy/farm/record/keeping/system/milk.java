@@ -15,9 +15,9 @@ import java.sql.Statement;
  */
 public class milk {
     String cowid;
-    double  firstmilk;
-    double secondmilk;
-    double thirdmilk;
+    int  firstmilk;
+   int secondmilk;
+    int thirdmilk;
     
   DBConnect db = new DBConnect();
     Connection myCon = db.myConnect(); 
@@ -37,7 +37,7 @@ public class milk {
         return firstmilk;
     }
 
-    public void setFirstmilk(double firstmilk) {
+    public void setFirstmilk(int firstmilk) {
         this.firstmilk = firstmilk;
     }
 
@@ -45,7 +45,7 @@ public class milk {
         return secondmilk;
     }
 
-    public void setSecondmilk(double secondmilk) {
+    public void setSecondmilk(int secondmilk) {
         this.secondmilk = secondmilk;
     }
 
@@ -53,7 +53,7 @@ public class milk {
         return thirdmilk;
     }
 
-    public void setThirdmilk(double thirdmilk) {
+    public void setThirdmilk(int thirdmilk) {
         this.thirdmilk = thirdmilk;
     }
 
@@ -70,7 +70,7 @@ public class milk {
          
         
     }
-     public void saveCow() throws SQLException{
+     public void saveMilk() throws SQLException{
           Statement s = null;
          //creates an instance of the DBConnect class
          
@@ -78,7 +78,7 @@ public class milk {
          System.out.println(myCon);
          s = myCon.createStatement();
          
-                    String sql = "INSERT INTO user "
+                    String sql = "INSERT INTO milk "
                             + "(cowid,firstmilking,secondmilking,thirdmilking) "
                             + "VALUES ('" + getCowid() + "','"
                             + getFirstmilk() + "','"   
