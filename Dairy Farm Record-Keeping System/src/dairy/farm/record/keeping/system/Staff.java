@@ -6,8 +6,11 @@
 package dairy.farm.record.keeping.system;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -116,6 +119,7 @@ public class Staff {
         setLname(null);
         setPhone(null);
           setSalary(0);
+          setDob(null);
     }
   public void saveStaff() throws SQLException{
           Statement s = null;
@@ -140,7 +144,41 @@ public class Staff {
                     s.execute(sql);
                     clear();
      }} 
+  public void login() throws SQLException{
+         PreparedStatement ps=null;
+
+       
+      
+        
+        setFname(null);
+       
+     
+       
+         
+          
+
+    String sql = "select * from staff where isActive=1 ";
+             ps = myCon.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            int i =0;
+            if(rs.next()) {
+                    setNid(rs.getString("nid"));     
+                    setFname(rs.getString("fname")); 
+                    setLname(rs.getString("lname"));
+                    setGender(rs.getString("gender"));
+                     setPhone( rs.getString("phone"));
+                    setAddress(rs.getString("address")); 
+                       setDob(rs.getString("dob"));  
+                        setEmail(rs.getString("email"));  
+                          setSalary(rs.getInt("section"));  
+                    model.addRow(new Object[]{roll, name, cl, sec});
+                    i++; 
+            }
+    
+    }
+
+    }
      
 
     
-}
+

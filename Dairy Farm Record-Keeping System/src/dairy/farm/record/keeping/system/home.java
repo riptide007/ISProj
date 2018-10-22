@@ -153,6 +153,11 @@ public class home extends javax.swing.JFrame {
         );
 
         output.setText("OUTPUT");
+        output.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outputActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("User Details");
 
@@ -245,6 +250,12 @@ public class home extends javax.swing.JFrame {
         im.setVisible(true);
        setVisible(false);
     }//GEN-LAST:event_inmilkActionPerformed
+
+    private void outputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputActionPerformed
+      output out = new output();
+      out.setVisible(true);
+      setVisible(false);
+    }//GEN-LAST:event_outputActionPerformed
 
     /**
      * @param args the command line arguments
