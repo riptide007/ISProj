@@ -67,6 +67,11 @@ public class home extends javax.swing.JFrame {
         jLabel1.setText("WELCOME TO THE HOMEPAGE FOR THE RECORD KEEPING SYSTEM");
 
         jButton7.setText("ANALYSIS");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         logout.setText("LOGOUT");
         logout.addActionListener(new java.awt.event.ActionListener() {
@@ -389,6 +394,12 @@ public class home extends javax.swing.JFrame {
         om.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_outmedActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+           analysis om = new analysis();
+        om.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
