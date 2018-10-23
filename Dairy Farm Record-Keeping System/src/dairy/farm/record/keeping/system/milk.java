@@ -14,7 +14,7 @@ import java.sql.Statement;
  * @author Jason M.
  */
 public class milk {
-    String cowid;
+  int cowid;
     int  firstmilk;
    int secondmilk;
     int thirdmilk;
@@ -25,11 +25,11 @@ public class milk {
     public milk() {
     }
 
-    public String getCowid() {
+    public int getCowid() {
         return cowid;
     }
 
-    public void setCowid(String cowid) {
+    public void setCowid(int cowid) {
         this.cowid = cowid;
     }
 
@@ -60,7 +60,7 @@ public class milk {
   
     
       public void clear(){
-         setCowid(null);
+         setCowid(0);
          setFirstmilk(0);
          setSecondmilk(0);
          setThirdmilk(0);

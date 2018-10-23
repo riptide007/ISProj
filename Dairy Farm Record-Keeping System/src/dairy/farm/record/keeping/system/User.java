@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 public class User  {
     
-
+int userid;
     String uname;
     String password;
     String CPassword;
@@ -26,6 +26,14 @@ public class User  {
     
     public User(){
         
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public String getUname() {

@@ -7,6 +7,7 @@
     <Property name="iconImages" type="java.util.List" editor="org.netbeans.modules.form.ComponentChooserEditor">
       <ComponentRef name="null"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -27,7 +28,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel1" alignment="1" pref="798" max="32767" attributes="0"/>
+          <Component id="jLabel1" alignment="1" pref="795" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="signup" min="-2" pref="104" max="-2" attributes="0"/>
@@ -47,7 +48,7 @@
                   <Component id="jButton1" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="signup" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="138" max="32767" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,7 +56,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="                                                                                       WELCOME TO THE DAIRY FARM RECORD-KEEPING SYSTEM"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="                                                 WELCOME TO THE DAIRY FARM RECORD-KEEPING SYSTEM"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

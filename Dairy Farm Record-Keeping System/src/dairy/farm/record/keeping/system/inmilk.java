@@ -151,7 +151,7 @@ public class inmilk extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void savecowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savecowActionPerformed
-     milk.setCowid(cowid.getText());
+     milk.setCowid(Integer.parseInt(cowid.getText()));
      milk.setFirstmilk(Integer.parseInt(fmilk.getText()));
      milk.setSecondmilk(Integer.parseInt(smilk.getText()));
      milk.setThirdmilk(Integer.parseInt(tmilk.getText()));

@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class Staff {
-   
+   int staffid;
         String fname;
     String lname;
     String nid;
@@ -34,6 +34,14 @@ public class Staff {
     HasherSha1 jk = new HasherSha1(); 
     
      public Staff() {
+    }
+
+    public int getStaffid() {
+        return staffid;
+    }
+
+    public void setStaffid(int staffid) {
+        this.staffid = staffid;
     }
 
     public String getNid() {
@@ -110,6 +118,7 @@ public class Staff {
         this.salary = salary;
     }
       public void clear(){
+          
            setNid(null);
         setAddress(null);
        setDob(null);
@@ -135,47 +144,16 @@ public class Staff {
                             + "VALUES ('" +  getNid()+ "','"
                             +getFname() + "','"  
                             + getLname() + "','"                       
-                            + getGender()+ "'" + ",'"
+                            + getGender()+  "','"
                             + getPhone() + "','"
                             + getAddress()+ "','"
                             + getEmail()+ "','"
-                            +getDob()+"," 
+                            +getDob()+"','" 
                             + getSalary()+ "') ";
                     s.execute(sql);
                     clear();
      }} 
-  public void login() throws SQLException{
-         PreparedStatement ps=null;
-
-       
-      
-        
-        setFname(null);
-       
-     
-       
-         
-          
-
-    String sql = "select * from staff where isActive=1 ";
-             ps = myCon.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            int i =0;
-            if(rs.next()) {
-                    setNid(rs.getString("nid"));     
-                    setFname(rs.getString("fname")); 
-                    setLname(rs.getString("lname"));
-                    setGender(rs.getString("gender"));
-                     setPhone( rs.getString("phone"));
-                    setAddress(rs.getString("address")); 
-                       setDob(rs.getString("dob"));  
-                        setEmail(rs.getString("email"));  
-                          setSalary(rs.getInt("section"));  
-                    model.addRow(new Object[]{roll, name, cl, sec});
-                    i++; 
-            }
-    
-    }
+ 
 
     }
      

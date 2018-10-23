@@ -5,7 +5,15 @@
  */
 package dairy.farm.record.keeping.system;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -16,13 +24,85 @@ public class outstaff extends javax.swing.JFrame {
     /**
      * Creates new form outstaff
      */
+             PreparedStatement ps=null;   
+   DBConnect db = new DBConnect();
+    Connection myCon = db.myConnect(); 
     public outstaff() {
         initComponents();
+        display();
     }
-    public ArrayList<User> userlist(){
-         ArrayList<User> userlist = new  ArrayList<User>();
-        return null;
+    
+    public ArrayList<Staff> getstafflist(){
+ ArrayList<Staff> stafflist = new ArrayList<>();
+
+
+         
+          
+
+    String sql = "select * from staff where isActive=1 ";
+        
+   try{
+            ps = myCon.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                
+                   Staff staff=new Staff();
+                   staff.setStaffid(rs.getInt("id"));
+                   staff.setNid(rs.getString("nid"));
+                     staff.setFname(rs.getString("fname"));
+                           staff. setLname(rs.getString("lname"));
+                           staff.setGender(rs.getString("gender"));
+                           staff.setPhone( rs.getString("phone"));
+                           staff.setAddress(rs.getString("address"));
+                           staff.setDob(rs.getString("dob"));
+                           staff.setEmail(rs.getString("email"));
+                           staff.setSalary(rs.getInt("salary"));  
+                   
+                   stafflist.add(staff);
+            }
+   }catch (Exception e){
+       e.printStackTrace();
+   }
+    
+  return stafflist;
+}
+public void display(){
+    ArrayList<Staff> list = getstafflist();
+    DefaultTableModel model = (DefaultTableModel)stafftable.getModel();
+    Object[] row = new Object[10];
+    for(int t=0; t<list.size(); t++){
+        row[0] = list.get(t).getStaffid();
+        row[1] = list.get(t).getNid();
+        row[2] = list.get(t).getFname();
+        row[3] = list.get(t).getLname();
+        row[4] = list.get(t).getGender();
+        row[5] = list.get(t).getPhone();
+        row[6] = list.get(t).getAddress();
+       row[7] = list.get(t).getEmail();
+       row[8] = list.get(t).getDob();
+       row[9] = list.get(t).getSalary();
+       
+       model.addRow(row);
     }
+}
+
+public void exQuery(String query, String message){
+    Statement st;
+    try{
+        st =myCon.createStatement();
+        if((st.executeUpdate(query)) == 1){
+          DefaultTableModel model = (DefaultTableModel)stafftable.getModel();
+          model.setRowCount(0);
+          display();
+            JOptionPane.showMessageDialog(null,"Data "+ message+" Successfully");
+        }else{
+            JOptionPane.showMessageDialog(null,"Data not "+ message);
+        }
+    }catch(Exception e){
+    e.printStackTrace();
+}
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,76 +112,287 @@ public class outstaff extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("recorder?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
-        item_1Query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT i FROM Item_1 i");
-        item_1List = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : item_1Query.getResultList();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        stafftable = new javax.swing.JTable();
+        address = new javax.swing.JTextField();
+        phone = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        salary = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lname = new javax.swing.JTextField();
+        dob = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        fname = new javax.swing.JTextField();
+        nid = new javax.swing.JTextField();
+        gender = new javax.swing.JTextField();
+        update = new javax.swing.JButton();
+        del = new javax.swing.JButton();
+        staffid = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Display Staff Records");
 
-        jScrollPane1.setViewportView(jTable1);
+        stafftable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "StaffID", "National ID", "First Name", "Last Name", "Gender", "Phone", "Address", "Email", "Date of Birth", "Salary"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        stafftable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stafftableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(stafftable);
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Last Name");
+
+        jLabel8.setText("Email");
+
+        jLabel9.setText("Salary");
+
+        jLabel1.setText("First Name");
+
+        jLabel10.setText("Date of Birth");
+
+        jLabel2.setText("National ID");
+
+        jLabel3.setText("Gender");
+
+        jLabel4.setText("Phone");
+
+        jLabel5.setText("Address");
+
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
+        del.setText("Delete");
+        del.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Staff ID");
+
+        back.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        back.setText("<");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(201, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102)
+                        .addComponent(del, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nid)
+                                    .addComponent(fname)
+                                    .addComponent(lname)
+                                    .addComponent(dob, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                    .addComponent(gender)
+                                    .addComponent(staffid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(salary, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(address, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(112, 112, 112)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(staffid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(del, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void stafftableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stafftableMouseClicked
+        int t = stafftable.getSelectedRow();
+        TableModel model = stafftable.getModel();
+        staffid.setText( model.getValueAt(t,0).toString());
+        nid.setText((String) model.getValueAt(t,1));
+        fname.setText((String) model.getValueAt(t,2));
+        lname.setText((String) model.getValueAt(t,3));
+        gender.setText((String) model.getValueAt(t,4));
+        phone.setText((String) model.getValueAt(t,5));
+        address.setText((String) model.getValueAt(t,6));
+        email.setText((String) model.getValueAt(t,7));
+        dob.setText((String) model.getValueAt(t,8));
+        salary.setText( model.getValueAt(t,9).toString());
+        
+
+    }//GEN-LAST:event_stafftableMouseClicked
+  
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+       String upsql = "UPDATE `staff` SET `nid`='"+nid.getText()+
+                                                                "',`fname`='"+fname.getText()+
+                                                                "',`lname`='"+lname.getText()+"',`gender`='"+gender.getText()+
+                                                                "',`phone`='"+phone.getText()+"',`address`='"+address.getText()+
+                                                                "',`email`='"+email.getText()+"',`dob`='"+nid.getText()+
+                                                                "',`salary`='"+Double.parseDouble(salary.getText())+ "' WHERE `id`="+Integer.parseInt(staffid.getText());
+       exQuery(upsql, "Updated");
+    }//GEN-LAST:event_updateActionPerformed
+
+    private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
+        String delsql = " UPDATE `staff` SET `isActive`= 0 WHERE `id`="+Integer.parseInt(staffid.getText());
+        exQuery(delsql, "Deleted");
+    }//GEN-LAST:event_delActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        setVisible(false);
+        home home = new home();
+        home.setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(outstaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(outstaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(outstaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(outstaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new outstaff().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager entityManager;
-    private java.util.List<dairy.farm.record.keeping.system.Item_1> item_1List;
-    private javax.persistence.Query item_1Query;
+    private javax.swing.JTextField address;
+    private javax.swing.JButton back;
+    private javax.swing.JButton del;
+    private javax.swing.JTextField dob;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField fname;
+    private javax.swing.JTextField gender;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField lname;
+    private javax.swing.JTextField nid;
+    private javax.swing.JTextField phone;
+    private javax.swing.JTextField salary;
+    private javax.swing.JLabel staffid;
+    private javax.swing.JTable stafftable;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
+
 }

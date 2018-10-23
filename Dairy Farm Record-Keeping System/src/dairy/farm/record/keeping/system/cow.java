@@ -14,6 +14,7 @@ import java.sql.Statement;
  * @author Jason M.
  */
 public class cow {
+    int id;
     String cowid;
     String cowtype;
     String dob;
@@ -26,6 +27,14 @@ public class cow {
     HasherSha1 jk = new HasherSha1(); 
     
     public cow() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCowid() {

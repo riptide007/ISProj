@@ -17,6 +17,8 @@ import java.sql.Statement;
  */
 
 public class Item {
+    
+    int id;
       String itemid;
     private String itemname;
     private int quantity;
@@ -29,6 +31,14 @@ public class Item {
     Connection myCon = db.myConnect(); 
     HasherSha1 jk = new HasherSha1(); 
     public Item() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getItemid() {
@@ -52,8 +62,8 @@ public class Item {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = (int) quantity;
+    public void setQuantity(int quantity) {
+        this.quantity =  quantity;
     }
 
     public String getPurchasedate() {
