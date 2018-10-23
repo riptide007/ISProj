@@ -14,7 +14,7 @@ import java.sql.Statement;
  * @author Jason M.
  */
 public class calving {
-    
+    int id;
     String cowid;
     String calvingdate;
     String insemmethod;
@@ -26,6 +26,14 @@ public class calving {
  DBConnect db = new DBConnect();
     Connection myCon = db.myConnect(); 
     HasherSha1 jk = new HasherSha1(); 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
   
 

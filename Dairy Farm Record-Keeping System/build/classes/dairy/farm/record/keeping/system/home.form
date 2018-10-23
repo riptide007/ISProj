@@ -344,11 +344,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="PRODUCTION"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="outmilkActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="outmed">
           <Properties>
             <Property name="text" type="java.lang.String" value="MEDICAL"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="outmedActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="outstaf">
           <Properties>

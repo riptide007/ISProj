@@ -67,7 +67,7 @@ public class outcow extends javax.swing.JFrame {
 public void display(){
     ArrayList<cow> list = getcowlist();
     DefaultTableModel model = (DefaultTableModel)cowtable.getModel();
-    Object[] row = new Object[10];
+    Object[] row = new Object[7];
     for(int t=0; t<list.size(); t++){
         row[0] = list.get(t).getId();
         row[1] = list.get(t).getCowid();
@@ -128,6 +128,7 @@ public void exQuery(String query, String message){
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Viewing Cow Records");
 
         update.setText("Update");
         update.addActionListener(new java.awt.event.ActionListener() {
@@ -302,7 +303,7 @@ public void exQuery(String query, String message){
     }//GEN-LAST:event_updateActionPerformed
 
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
-        String delsql = " UPDATE `staff` SET `isActive`= 0 WHERE `id`="+Integer.parseInt(id.getText());
+        String delsql = " UPDATE `cow` SET `isActive`= 0 WHERE `id`="+Integer.parseInt(id.getText());
         exQuery(delsql, "Deleted");
     }//GEN-LAST:event_delActionPerformed
 

@@ -183,8 +183,18 @@ public class home extends javax.swing.JFrame {
         });
 
         outmilk.setText("PRODUCTION");
+        outmilk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outmilkActionPerformed(evt);
+            }
+        });
 
         outmed.setText("MEDICAL");
+        outmed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outmedActionPerformed(evt);
+            }
+        });
 
         outstaf.setText("STAFF");
         outstaf.addActionListener(new java.awt.event.ActionListener() {
@@ -345,11 +355,15 @@ public class home extends javax.swing.JFrame {
     }//GEN-LAST:event_outcowActionPerformed
 
     private void outitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outitemActionPerformed
-        // TODO add your handling code here:
+        outcalving oc = new outcalving();
+        oc.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_outitemActionPerformed
 
     private void outcalvingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcalvingActionPerformed
-        // TODO add your handling code here:
+         outuser ou = new outuser();
+        ou.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_outcalvingActionPerformed
 
     private void outstafActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outstafActionPerformed
@@ -363,6 +377,18 @@ public class home extends javax.swing.JFrame {
         ou.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_outuserActionPerformed
+
+    private void outmilkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outmilkActionPerformed
+          outmilk om = new outmilk();
+        om.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_outmilkActionPerformed
+
+    private void outmedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outmedActionPerformed
+          outmed om = new outmed();
+        om.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_outmedActionPerformed
 
     /**
      * @param args the command line arguments

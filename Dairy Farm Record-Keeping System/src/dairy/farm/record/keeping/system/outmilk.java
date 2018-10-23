@@ -117,6 +117,7 @@ public void exQuery(String query, String message){
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Viewing Milk Production Records");
 
         update.setText("Update");
         update.addActionListener(new java.awt.event.ActionListener() {
