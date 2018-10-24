@@ -158,6 +158,11 @@ public void exQuery(String query, String message){
 
         back.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         back.setText("<");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,6 +255,12 @@ public void exQuery(String query, String message){
        
 
     }//GEN-LAST:event_usertableMouseClicked
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        setVisible(false);
+        home home = new home();
+        home.setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
